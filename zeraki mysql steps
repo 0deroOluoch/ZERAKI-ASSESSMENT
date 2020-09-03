@@ -1,0 +1,50 @@
+zeraki MYSQL test.
+
+Step one.
+
+First create the Institution table. 
+
+CREATE TABLE institution (
+    institutionid int(11),
+    name varchar(250),
+    PRIMARY KEY (institutionid)
+ );
+
+
+second create the course table.
+
+CREATE TABLE course (
+    courseid int(11),
+    name varchar(250),
+    institution int(11),
+    PRIMARY KEY (courseid),
+    FOREIGN KEY (institution) REFERENCES institution(institutionid)
+);
+
+
+Then finaly create the student table.
+
+
+
+CREATE TABLE student (
+    studentid int(11),
+    name varchar(250),
+   course int(11),
+ PRIMARY KEY (studentid),
+FOREIGN KEY (course) REFERENCES course(courseid)
+ );
+
+
+
+For the second part, this is a qiery that would retvive number of students percourse per institution. 
+
+
+
+SELECT i.name as INSTITUTION_NAME, 
+MAX(c.name) AS COURSE_NAME, 
+COUNT(s.studentid) AS NUMBER_OF_STUDENTS
+    FROM course c
+    LEFT JOIN student s ON s.course = c.courseid
+    LEFT JOIN institution i 
+	ON i.institutionid = c.institution
+    GROUP BY c.courseid;
