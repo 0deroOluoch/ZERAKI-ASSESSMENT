@@ -1,3 +1,4 @@
+//This solution uses the summation method.
 
 
 public class Number {
