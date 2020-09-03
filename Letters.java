@@ -1,4 +1,3 @@
-package com.appnetics;
 import java.util.Scanner;
 
 public class Letters {
